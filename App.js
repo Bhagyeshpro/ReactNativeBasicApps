@@ -8,33 +8,56 @@ import {
   TextInput,
   View,
 } from "react-native";
-import Todos from "./Todos";
+import ImageAdder from "./src/ImageAdder";
+import Todos from "./src/Todos";
 
 export default function App() {
-  const [input, setInput] = useState("");
+  const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState([]);
+  const [imageURLInput, setImageURLInput] = useState("");
+  const [images, setImages] = useState([]);
 
   const addTodo = () => {
-    setTodos([input, ...todos]);
+    setTodos([todoInput, ...todos]);
     // Make input field blank after pressing button
-    setInput("");
+    setTodoInput("");
   };
+
+  const addImage = () => {
+    setImages([imageURLInput, ...images]);
+    setImageURLInput("");
+  }
 
   return (
     <SafeAreaView>
-      <View style={styles.container}>
+      <View>
         <Text>React Native Basic Apps!</Text>
-        {todos.map((todo) => {
-          <Todos title={todo} />;
-        })}
+      </View>
+        {todos.map((todo) => ( 
+          <Todos title={todo}/>
+        ))}
         <TextInput
           style={styles.todoInput}
-          value={input}
+          value={todoInput}
           placeholder="Enter Your Tasks..."
-          onChangeText={(text) => setInput(text)}
+          onChangeText={(text) => setTodoInput(text)}
         />
-        <Button onPress={addTodo} title="Add TODO" />
-      </View>
+        <Button onPress={addTodo} title="Add TODO"/>
+
+        <Text>Enter Image URL:</Text>
+        {images.map((image) => (
+          <ImageAdder source={image}/>
+        ))}
+        <ImageAdder/>
+        <TextInput 
+          style={styles.todoInput}
+          placeholder="Enter Image URL ..."
+          value={imageURLInput}
+          onChangeText={(text) => setImageURLInput(text)}
+        />
+        <Button onPress={addImage} title="Add IMG"/>
+
+        
     </SafeAreaView>
   );
 }
