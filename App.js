@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  ScrollView,
 } from "react-native";
 import ImageAdder from "./src/ImageAdder";
 import Todos from "./src/Todos";
@@ -33,9 +34,11 @@ export default function App() {
       <View>
         <Text>React Native Basic Apps!</Text>
       </View>
+      <ScrollView>
         {todos.map((todo) => ( 
           <Todos title={todo}/>
         ))}
+      </ScrollView>
         <TextInput
           style={styles.todoInput}
           value={todoInput}
