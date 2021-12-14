@@ -35,7 +35,7 @@ export default function App() {
         onChangeText={text => setDescription(text)}
       />
       <TextInput 
-        placeholder="Enter the amount you made in USD ..."
+        placeholder="Enter the amount you made in USD ($)..."
         keyboardType="numeric"
         style={styles.gigInput}
         value={amount}
